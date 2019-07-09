@@ -115,7 +115,7 @@ AC_MSG_NOTICE([Checking signature of zfs_prop_valid_for_type in zfs header])
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM(
 		[#include <sys/fs/zfs.h>],
 		[
-			zfs_prop_valid_for_type(0, ZFS_TYPE_VOLUME, NULL)
+			zfs_prop_valid_for_type(0, ZFS_TYPE_VOLUME, B_FALSE)
 		],
 	)],
 	[AC_SUBST(HAVE_ZFS_PROP_VALID_FOR_TYPE, 3) AC_MSG_NOTICE(3 PARAMS)],
@@ -315,7 +315,7 @@ AC_MSG_NOTICE([Checking zfs_iter_snapshots parameters])
 AC_LINK_IFELSE([AC_LANG_PROGRAM(
 		[#include <libzfs.h>],
 		[
-			zfs_iter_snapshots(NULL, NULL, NULL, NULL, 0, 0);
+			zfs_iter_snapshots(NULL, B_FALSE, NULL, NULL, 0, 0);
 		]
 	)],
 	[AC_SUBST(HAVE_ZFS_ITER_SNAPSHOTS, 6) AC_MSG_NOTICE([6 params])],
@@ -324,10 +324,10 @@ AC_LINK_IFELSE([AC_LANG_PROGRAM(
 
 dnl Checking function zpool_read_label existence
 
-AC_MSG_NOTICE([Checking existence of zpool_read_label with 2 params in libzfs.h header])
+AC_MSG_NOTICE([Checking existence of zpool_read_label with 2 params in libzutils.h header])
 
 AC_LINK_IFELSE([AC_LANG_PROGRAM(
-		[#include <libzfs.h>],
+		[#include <libzutils.h>],
 		[
 			zpool_read_label(0, NULL) /* ; */
 		]
@@ -337,10 +337,10 @@ AC_LINK_IFELSE([AC_LANG_PROGRAM(
 )
 
 
-AC_MSG_NOTICE([Checking existence of zpool_read_label with 3 params in libzfs.h header])
+AC_MSG_NOTICE([Checking existence of zpool_read_label with 3 params in libzutils.h header])
 
 AC_LINK_IFELSE([AC_LANG_PROGRAM(
-		[#include <libzfs.h>],
+		[#include <libzutils.h>],
 		[
 			zpool_read_label(0, NULL, NULL) /* ; */
 		]
